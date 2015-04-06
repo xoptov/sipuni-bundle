@@ -1,0 +1,23 @@
+{
+    "name": "perfico/sipuni-bundle",
+    "description": "Bundle for integration with Sipuni telephony",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maksim Khortov",
+            "email": "xoptov@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.6.x-dev",
+        "perfico/crm-bundle": "~1.1"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:cleverweb/dosalesbundle.git"
+        }
+    ]
+}
