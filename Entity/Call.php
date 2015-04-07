@@ -3,8 +3,6 @@
 namespace Perfico\SipuniBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Perfico\CRMBundle\Entity\ActivityInterface;
-use Perfico\CRMBundle\Entity\AccountInterface;
 
 abstract class Call
 {
@@ -16,12 +14,6 @@ abstract class Call
 
     /** @var \DateTime */
     protected $createdAt;
-
-    /** @var ActivityInterface */
-    protected $activity;
-
-    /** @var AccountInterface */
-    protected $account;
 
     /** @var CallEventInterface[] */
     protected $callEvents;
@@ -35,6 +27,10 @@ abstract class Call
     public function onCreate()
     {
         $this->createdAt = new \DateTime();
+    }
+
+    public function __construct()
+    {
         $this->callEvents = new ArrayCollection();
     }
 
@@ -71,44 +67,6 @@ abstract class Call
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * @param ActivityInterface $activity
-     * @return Call
-     */
-    public function setActivity(ActivityInterface $activity)
-    {
-        $this->activity = $activity;
-
-        return $this;
-    }
-
-    /**
-     * @return ActivityInterface
-     */
-    public function getActivity()
-    {
-        return $this->activity;
-    }
-
-    /**
-     * @param AccountInterface $account
-     * @return Call
-     */
-    public function setAccount(AccountInterface $account)
-    {
-        $this->account = $account;
-
-        return $this;
-    }
-
-    /**
-     * @return AccountInterface
-     */
-    public function getAccount()
-    {
-        return $this->account;
     }
 
     /**

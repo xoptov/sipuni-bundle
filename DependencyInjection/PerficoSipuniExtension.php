@@ -24,5 +24,8 @@ class PerficoSipuniExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $definition = $container->getDefinition('perfico_sipuni.call_manager');
+        $definition->addArgument($config['call_class']);
     }
 }

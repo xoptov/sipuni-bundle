@@ -27,17 +27,6 @@ interface HangupEventInterface extends CallEventInterface
     public function getStartDate();
 
     /**
-     * @param \DateTime $date
-     * @return HangupEventInterface
-     */
-    public function setAnswerDate(\DateTime $date);
-
-    /**
-     * @return \DateTime
-     */
-    public function getAnswerDate();
-
-    /**
      * @param string $link
      * @return HangupEventInterface
      */

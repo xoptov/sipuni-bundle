@@ -2,14 +2,10 @@
 
 namespace Perfico\SipuniBundle\Service\Factory;
 
-use Perfico\SipuniBundle\Entity\Call;
 use Perfico\SipuniBundle\Entity\CallEvent;
 use Perfico\SipuniBundle\Entity\CallEventInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * This is class using for polymorphism in oop
- */
 class CallEventFactory implements EventFactoryInterface
 {
     /**
@@ -23,10 +19,10 @@ class CallEventFactory implements EventFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function hydration(CallEventInterface $event, Request $request, Call $call)
+    public function hydration(CallEventInterface $event, Request $request)
     {
-        $event->setCall($call)
-            ->setType($request->get('type'))
+        $event->setCallExtId($request->get('call_id'))
+            ->setType($request->get('event'))
             ->setSrcNumber(trim($request->get('src_num')))
             ->setSrcType($request->get('src_type'))
             ->setDstNumber(trim($request->get('dst_num')))

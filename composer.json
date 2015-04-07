@@ -11,13 +11,6 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.x-dev",
-        "perfico/crm-bundle": "~1.0"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:cleverweb/dosalesbundle.git"
-        }
-    ]
+        "symfony/symfony": "2.6.x-dev"
+    }
 }

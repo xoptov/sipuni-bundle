@@ -3,12 +3,14 @@
 namespace Perfico\SipuniBundle\Entity;
 
 use Perfico\SipuniBundle\Entity;
-use Perfico\CRMBundle\Entity\AccountInterface;
 
 class CallEvent implements CallEventInterface
 {
     /** @var integer */
     protected $id;
+
+    /** @var string */
+    protected $callExtId;
 
     /** @var Call */
     protected $call;
@@ -31,15 +33,30 @@ class CallEvent implements CallEventInterface
     /** @var \DateTime */
     protected $eventDate;
 
-    /** @var AccountInterface */
-    protected $account;
-
     /**
      * {@inheritdoc}
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCallExtId($callId)
+    {
+        $this->callExtId = $callId;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCallExtId()
+    {
+        return $this->callExtId;
     }
 
     /**
@@ -137,7 +154,7 @@ class CallEvent implements CallEventInterface
      */
     public function setDstType($type)
     {
-        $this->type = $type;
+        $this->dstType = $type;
 
         return $this;
     }
@@ -166,23 +183,5 @@ class CallEvent implements CallEventInterface
     public function getEventDate()
     {
         return $this->eventDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAccount(AccountInterface $account)
-    {
-        $this->account = $account;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAccount()
-    {
-        return $this->account;
     }
 } 
