@@ -11,11 +11,6 @@ class CallbackEvent extends Event
     protected $callEvent;
 
     /**
-     * @const
-     */
-    const CALL_EVENT = 'perfico.sipuni.call_event';
-
-    /**
      * @param CallEventInterface $callEvent
      */
     public function setCallEvent(CallEventInterface $callEvent)

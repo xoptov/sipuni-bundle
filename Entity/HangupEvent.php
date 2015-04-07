@@ -10,9 +10,6 @@ class HangupEvent extends CallEvent implements HangupEventInterface
     /** @var \DateTime */
     protected $startDate;
 
-    /** @var \DateTime */
-    protected $answerDate;
-
     /** @var string */
     protected $recordLink;
 
@@ -50,24 +47,6 @@ class HangupEvent extends CallEvent implements HangupEventInterface
     public function getStartDate()
     {
         return $this->startDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAnswerDate(\DateTime $date)
-    {
-        $this->answerDate = $date;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAnswerDate()
-    {
-        return $this->answerDate;
     }
 
     /**

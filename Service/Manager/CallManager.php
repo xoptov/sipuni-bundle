@@ -2,47 +2,61 @@
 
 namespace Perfico\SipuniBundle\Service\Manager;
 
-use Doctrine\ORM\EntityManager;
-use Perfico\CoreBundle\Entity\Activity;
-use Perfico\CoreBundle\Entity\SipuniCall;
-use Perfico\CRMBundle\Entity\AccountInterface;
-use Perfico\CRMBundle\Entity\ActivityInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Perfico\SipuniBundle\Entity\CallEventInterface;
+use Perfico\SipuniBundle\Entity\Call;
 
 class CallManager
 {
-    /** @var EntityManager */
-    protected $em;
+    /** @var ObjectManager */
+    protected $objectManager;
 
-    public function __construct(EntityManager $em)
+    /** @var string */
+    protected $class;
+
+    /** @var ObjectRepository */
+    protected $repository;
+
+    public function __construct(ObjectManager $om, $class)
     {
-        $this->em = $em;
+        $this->objectManager = $om;
+        $this->repository = $om->getRepository($class);
+
+        $metadata = $om->getClassMetadata($class);
+        $this->class = $metadata->getName();
     }
 
     /**
-     * @param string $callId
-     * @param AccountInterface $account
-     * @return SipuniCall
+     * @param CallEventInterface $callEvent
+     * @return Call
      */
-    public function retrieveCall($callId, AccountInterface $account)
+    public function create(CallEventInterface $callEvent)
     {
-        $call = $this->em->getRepository('CoreBundle:SipuniCall')
-            ->findOneBy(array('callExtId' => $callId, 'account' => $account));
+        /** @var Call $call */
+        $call = new $this->class;
+        $call->setCallExtId($callEvent->getCallExtId());
 
-        if ($call == null) {
-            $call = new SipuniCall();
-            $this->em->persist($call);
-
-            $activity = new Activity();
-            $this->em->persist($activity);
-
-            $call->setCallExtId($callId)
-                ->setActivity($activity)
-                ->setAccount($account);
-
-            $activity->setType(ActivityInterface::TYPE_CALL)
-                ->setAccount($account);
+        switch ($callEvent->getType()) {
+            case CallEventInterface::TYPE_ANSWER:
+                $call->setAnswerEvent($callEvent);
+                break;
+            case CallEventInterface::TYPE_HANGUP:
+                $call->setHangupEvent($callEvent);
+                break;
         }
 
+        $this->objectManager->persist($call);
+
         return $call;
+    }
+
+    /**
+     * @param CallEventInterface $callEvent
+     * @return Call
+     */
+    public function search(CallEventInterface $callEvent)
+    {
+        return $this->repository->findOneBy(['callExtId' => $callEvent->getCallExtId()]);
     }
 } 

@@ -3,7 +3,6 @@
 namespace Perfico\SipuniBundle\Entity;
 
 use Perfico\SipuniBundle\Entity;
-use Perfico\CRMBundle\Entity\AccountInterface;
 
 interface CallEventInterface
 {
@@ -18,6 +17,17 @@ interface CallEventInterface
      * @return integer
      */
     public function getId();
+
+    /**
+     * @param string $callId
+     * @return CallEventInterface
+     */
+    public function setCallExtId($callId);
+
+    /**
+     * @return string
+     */
+    public function getCallExtId();
 
     /**
      * @param Call $call
@@ -95,15 +105,4 @@ interface CallEventInterface
      * @return \DateTime
      */
     public function getEventDate();
-
-    /**
-     * @param AccountInterface $account
-     * @return CallEventInterface
-     */
-    public function setAccount(AccountInterface $account);
-
-    /**
-     * @return CallEventInterface
-     */
-    public function getAccount();
 } 

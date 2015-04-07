@@ -3,7 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="hello" path="/sipuni/callback">
+    <route id="perfico_sipuni_callback" path="/sipuni/callback">
         <default key="_controller">PerficoSipuniBundle:Callback:index</default>
     </route>
 
