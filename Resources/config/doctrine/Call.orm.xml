@@ -5,6 +5,10 @@
 
     <mapped-superclass name="Perfico\SipuniBundle\Entity\Call" table="sipuni_call">
 
+        <indexes>
+            <index columns="call_ext_id"/>
+        </indexes>
+
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onCreate"/>
         </lifecycle-callbacks>
