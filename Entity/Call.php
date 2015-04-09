@@ -4,7 +4,7 @@ namespace Perfico\SipuniBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-abstract class Call
+abstract class Call implements CallInterface
 {
     /** integer */
     protected $id;
@@ -15,7 +15,7 @@ abstract class Call
     /** @var \DateTime */
     protected $createdAt;
 
-    /** @var CallEventInterface[] */
+    /** @var ArrayCollection */
     protected $callEvents;
 
     /** @var AnswerEvent */
@@ -35,7 +35,7 @@ abstract class Call
     }
 
     /**
-     * @return integer
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -43,8 +43,7 @@ abstract class Call
     }
 
     /**
-     * @param string $callId
-     * @return Call
+     * {@inheritdoc}
      */
     public function setCallExtId($callId)
     {
@@ -54,7 +53,7 @@ abstract class Call
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getCallExtId()
     {
@@ -62,7 +61,7 @@ abstract class Call
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -70,7 +69,7 @@ abstract class Call
     }
 
     /**
-     * @return ArrayCollection
+     * {@inheritdoc}
      */
     public function getCallEvents()
     {
@@ -78,8 +77,7 @@ abstract class Call
     }
 
     /**
-     * @param AnswerEvent $event
-     * @return Call
+     * {@inheritdoc}
      */
     public function setAnswerEvent(AnswerEvent $event)
     {
@@ -89,7 +87,7 @@ abstract class Call
     }
 
     /**
-     * @return AnswerEvent
+     * {@inheritdoc}
      */
     public function getAnswerEvent()
     {
@@ -97,8 +95,7 @@ abstract class Call
     }
 
     /**
-     * @param HangupEventInterface $event
-     * @return Call
+     * {@inheritdoc}
      */
     public function setHangupEvent(HangupEventInterface $event)
     {
@@ -108,7 +105,7 @@ abstract class Call
     }
 
     /**
-     * @return HangupEventInterface
+     * {@inheritdoc}
      */
     public function getHangupEvent()
     {

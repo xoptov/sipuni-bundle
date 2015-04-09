@@ -4,17 +4,11 @@ namespace Perfico\SipuniBundle\Controller;
 
 use Monolog\Handler\StreamHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class CallbackController extends Controller
 {
-    /**
-     * @Method("GET")
-     * @Route("/sipuni/callback")
-     */
     public function indexAction(Request $request)
     {
         $logFile = $this->container->getParameter('kernel.logs_dir') . '/telephony.log';
