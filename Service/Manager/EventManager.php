@@ -5,6 +5,8 @@ namespace Perfico\SipuniBundle\Service\Manager;
 use Perfico\SipuniBundle\Entity\Call;
 use Perfico\SipuniBundle\Entity\CallEventInterface;
 use Perfico\SipuniBundle\Event\CallbackEvent;
+use Perfico\SipuniBundle\Exception\CallChainException;
+use Perfico\SipuniBundle\Exception\CallTypeException;
 use Perfico\SipuniBundle\PerficoSipuniEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Perfico\SipuniBundle\Service\Factory\EventFactoryInterface;
@@ -34,6 +36,7 @@ class EventManager
 
     /**
      * @param Request $request
+     * @throws CallChainException
      * @return CallEventInterface
      */
     public function processing(Request $request)
@@ -65,9 +68,7 @@ class EventManager
 
                 $this->dispatcher->dispatch(PerficoSipuniEvents::FIRST_CALL, $event);
             } else {
-                $event = $this->createEvent($callEvent);
-                $this->dispatcher->dispatch(PerficoSipuniEvents::ERROR_CHAIN, $event);
-
+                throw new CallChainException($callEvent);
             }
         }
 
@@ -76,6 +77,7 @@ class EventManager
 
     /**
      * @param CallEventInterface $callEvent
+     * @throws CallTypeException
      */
     protected function processingChain(CallEventInterface $callEvent)
     {
@@ -93,10 +95,7 @@ class EventManager
             $this->dispatcher->dispatch(PerficoSipuniEvents::HANGUP, $event);
 
         } else {
-            $event = $this->createEvent($callEvent);
-
-            $this->dispatcher->dispatch(PerficoSipuniEvents::UNDEFINED, $event);
-
+            throw new CallTypeException($callEvent);
         }
     }
 
