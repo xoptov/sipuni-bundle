@@ -105,4 +105,26 @@ interface CallEventInterface
      * @return \DateTime
      */
     public function getEventDate();
+
+    /**
+     * @param string $name
+     * @return CallEventInterface
+     */
+    public function setTreeName($name);
+
+    /**
+     * @return string
+     */
+    public function getTreeName();
+
+    /**
+     * @param string $number
+     * @return CallEventInterface
+     */
+    public function setTreeNumber($number);
+
+    /**
+     * @return string
+     */
+    public function getTreeNumber();
 } 

@@ -22,6 +22,8 @@
         <field name="dstNumber" type="string" column="dst_number" nullable="true"/>
         <field name="dstType" type="integer" column="dst_type" nullable="true"/>
         <field name="eventDate" type="datetime" column="event_date" nullable="false"/>
+        <field name="treeName" type="string" column="tree_name" nullable="true"/>
+        <field name="treeNumber" type="string" column="tree_number" nullable="true"/>
 
         <many-to-one target-entity="Perfico\SipuniBundle\Entity\Call" field="call" inversed-by="callEvents">
             <join-columns>

@@ -26,7 +26,9 @@ class CallEventFactory implements EventFactoryInterface
             ->setSrcNumber(trim($request->get('src_num')))
             ->setSrcType($request->get('src_type'))
             ->setDstNumber(trim($request->get('dst_num')))
-            ->setDstType($request->get('dst_type'));
+            ->setDstType($request->get('dst_type'))
+            ->setTreeName($request->get('treeName'))
+            ->setTreeNumber($request->get('treeNumber'));
 
         if ($request->get('timestamp')) {
             $date = new \DateTime();

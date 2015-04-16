@@ -33,6 +33,12 @@ class CallEvent implements CallEventInterface
     /** @var \DateTime */
     protected $eventDate;
 
+    /** @var string */
+    protected $treeName;
+
+    /** @var string */
+    protected $treeNumber;
+
     /**
      * {@inheritdoc}
      */
@@ -183,5 +189,41 @@ class CallEvent implements CallEventInterface
     public function getEventDate()
     {
         return $this->eventDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTreeName($name)
+    {
+        $this->treeName = $name;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTreeName()
+    {
+        return $this->treeName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTreeNumber($number)
+    {
+        $this->treeNumber = $number;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTreeNumber()
+    {
+        return $this->treeNumber;
     }
 } 
